@@ -65,13 +65,13 @@ public class BoxCox{
     private double originalMinimum = 0.0;                           // original data minimum
     private double originalMaximum = 0.0;                           // original data maximum
     private double originalMean = 0.0;                              // original data mean
-    private double originalMedian = 0.0;                            // original original data median
-    private double originalStandardDeviation = 0.0;                 // original data standard deviation
+    private double originalMedian = 0.0;                            // original original data median 原始数据中值
+    private double originalStandardDeviation = 0.0;                 // original data standard deviation 原始数据标准差
     private double originalVariance = 0.0;                          // original data variance
-    private double originalMomentSkewness = 0.0;                    // original data moment skewness
-    private double originalMedianSkewness = 0.0;                    // original data median skewness
-    private double originalQuartileSkewness = 0.0;                  // original data quartile skewness
-    private double originalExcessKurtosis = 0.0;                    // original data excess kurtosis
+    private double originalMomentSkewness = 0.0;                    // original data moment skewness 时刻偏度
+    private double originalMedianSkewness = 0.0;                    // original data median skewness 中值偏度
+    private double originalQuartileSkewness = 0.0;                  // original data quartile skewness 四分位偏度
+    private double originalExcessKurtosis = 0.0;                    // original data excess kurtosis 超值峰度
 
     private double standardizedOriginalRange = 0.0;                 // standardized original data range
     private double standardizedOriginalMinimum = 0.0;               // standardized original data minimum
@@ -85,18 +85,18 @@ public class BoxCox{
     private double standardizedOriginalQuartileSkewness = 0.0;      // standardized original data quartile skewness
     private double standardizedOriginalExcessKurtosis = 0.0;        // standardized original data excess kurtosis
 
-    private double originalSampleR = 0.0;                           // Probabilty plot correlation coefficient for the original data
-    private double originalIntercept = 0.0;                         // Probabilty plot intercept for the original data
-    private double originalGradient = 0.0;                          // Probabilty plot gradient for the original data
-    private double originalInterceptError = 0.0;                    // Estimated error of the probabilty plot intercept for the original data
-    private double originalGradientError = 0.0;                     // Estimated error of the probabilty plot gradient for the original data
+    private double originalSampleR = 0.0;                           // Probabilty plot correlation coefficient for the original data 原始数据的概率相关系数
+    private double originalIntercept = 0.0;                         // Probabilty plot intercept for the original data 原始数据的概率轴截距
+    private double originalGradient = 0.0;                          // Probabilty plot gradient for the original data 原始数据的概率梯度
+    private double originalInterceptError = 0.0;                    // Estimated error of the probabilty plot intercept for the original data 原始数据的概率轴截距的估计误差
+    private double originalGradientError = 0.0;                     // Estimated error of the probabilty plot gradient for the original data 原始数据的概率梯度的估计误差
 
-    private boolean initializationDone = false;                     // = true when initialization of`the data is complete
+    private boolean initializationDone = false;                     // = true when initialization of`the data is complete 当初始化数据完成时=true
 
-    private double[] transformedData = null;                        // Box-Cox transformed data
-    private double[] standardizedTransformedData = null;            // standardized  Box-Cox transformed data
-    private double[] scaledTransformedData = null;                  // Box-Cox transformed data scaled to original mean and standard deviation
-    private double[] sortedScaledTransformedData = null;            // Box-Cox transformed data scaled to original mean and standard deviation sorted into ascending order
+    private double[] transformedData = null;                        // Box-Cox transformed data ,Box-Cox变换后的数据
+    private double[] standardizedTransformedData = null;            // standardized  Box-Cox transformed data 标准化（Box-Cox变换后的数据）的数据
+    private double[] scaledTransformedData = null;                  // Box-Cox transformed data scaled to original mean and standard deviation 缩放Box-Cox变换后的数据到原始的平均值和标准差
+    private double[] sortedScaledTransformedData = null;            // Box-Cox transformed data scaled to original mean and standard deviation sorted into ascending order 以升序排序缩放后的Box-Cox变换后的数据
 
     private double transformedRange = 0.0;                          // scaled transformed data range
     private double transformedMinimum = 0.0;                        // scaled transformed data minimum
@@ -199,10 +199,10 @@ public class BoxCox{
     // Initialise original data arrays
     private void initialize(){
 
-        // store entered data as instance variable
+        // store entered data as instance variable 输入数据存储作为实例变量
         this.originalData = this.sod.array_as_double();
 
-        // Calculate original data statistics
+        // Calculate original data statistics 计算原始数据统计参数
         this.originalMinimum = this.sod.minimum();
         this.originalMaximum = this.sod.maximum();
         this.originalMedian = this.sod.median();
@@ -210,7 +210,7 @@ public class BoxCox{
         this.originalRange = this.originalMaximum - this.originalMinimum;
         this.originalMean = this.sod.mean();
         this.originalStandardDeviation = this.sod.standardDeviation();
-        this.originalVariance = this.sod.variance();
+        this.originalVariance = this.sod.variance(); // 计算原始数据的方差
         this.originalMomentSkewness = this.sod.momentSkewness();
         this.originalMedianSkewness = this.sod.medianSkewness();
         this.originalQuartileSkewness = this.sod.quartileSkewness();
@@ -237,7 +237,7 @@ public class BoxCox{
         this.standardizedOriginalQuartileSkewness = this.sod.quartileSkewness();
         this.standardizedOriginalExcessKurtosis = this.sod.excessKurtosis();
 
-        // Numbet of data points
+        // Number of data points 数据个数
         this.nData = this.originalData.length;
 
         //  Calculate uniform order statistic medians
