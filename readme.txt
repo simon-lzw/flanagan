@@ -1,3 +1,4 @@
+ 数学和统计java开发库，包含回归算法，一次二次线性非线性回归算法，数据平滑算法，傅里叶变换，数值积分，插值法。
 Java Scientific Library Java科学计算函数库
 
 This is a copy of Dr Michael Thomas Flanagan's Library.  Since I had to play around with it a little to get it to build,
